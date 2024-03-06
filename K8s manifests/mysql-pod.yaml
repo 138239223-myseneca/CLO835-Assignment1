@@ -1,0 +1,19 @@
+# Reference: https://medium.com/@tarikyegen35/kubernetes-how-to-pull-an-image-from-aws-ecr-private-repository-do-we-need-secret-object-f8a2ee84e7af
+# Reference: https://kubernetes.io/docs/concepts/workloads/pods/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  namespace: sqldb
+spec:
+  containers:
+  - name: mysql
+    image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-mysql-image:v1.0
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "dbpass123"
+    ports:
+    - containerPort: 3306
+      name: mysql
+ 
