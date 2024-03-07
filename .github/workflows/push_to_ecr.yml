@@ -32,7 +32,7 @@ jobs:
         ECR_REPOSITORY_WEB: clo835-webapp-image
         ECR_REPOSITORY_DB: clo835-mysql-image
       #  IMAGE_TAG: ${{ steps.set-image-tag.outputs.tag }}
-        IMAGE_TAG: v1.0
+        IMAGE_TAG: v2.0
       run: |
         ls -ltra
         # Docker build
