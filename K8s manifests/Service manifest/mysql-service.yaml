@@ -1,0 +1,16 @@
+# Reference: week6Session2 mongo-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: sqldb
+  labels:
+    app.kubernetes.io/name: mysql
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    app.kubernetes.io/name: sqldb
+    app.kubernetes.io/component: backend

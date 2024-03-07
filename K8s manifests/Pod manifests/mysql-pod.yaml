@@ -6,6 +6,8 @@ kind: Pod
 metadata:
   name: mysql
   namespace: sqldb
+  labels:
+    app.kubernetes.io/name: sqldb
 spec:
   containers:
   - name: mysql
