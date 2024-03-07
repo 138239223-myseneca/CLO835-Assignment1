@@ -1,0 +1,23 @@
+# Reference: https://medium.com/@tarikyegen35/kubernetes-how-to-pull-an-image-from-aws-ecr-private-repository-do-we-need-secret-object-f8a2ee84e7af
+# Reference: https://kubernetes.io/docs/concepts/workloads/pods/
+
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: webapp
+  namespace: webapp
+spec:
+  containers:
+  - name: webapp
+    image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v1.0
+    ports:
+    - containerPort: 8080
+    env:
+    - name: DBHOST
+      value: "mysql"
+    - name: DBPORT
+      value: "3306"
+    - name: DBPWD
+      value: "dbpass123"
