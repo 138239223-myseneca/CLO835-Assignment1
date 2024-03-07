@@ -6,6 +6,8 @@ kind: Pod
 metadata:
   name: mysql
   namespace: sqldb
+  labels:
+    app: mysqldb
 spec:
   containers:
   - name: mysql
