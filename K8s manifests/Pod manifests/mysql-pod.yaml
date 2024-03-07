@@ -6,16 +6,13 @@ kind: Pod
 metadata:
   name: mysql
   namespace: sqldb
-  labels:
-    app: mysql
 spec:
   containers:
   - name: mysql
     image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-mysql-image:v1.0
     env:
-    - name: MYSQL_ROOT_PASSWORD
-      value: "dbpass123"
+      - name: MYSQL_ROOT_PASSWORD
+        value: "dbpass123"
     ports:
-    - containerPort: 3306
-      name: mysql
- 
+      - containerPort: 3306
+        name: mysql

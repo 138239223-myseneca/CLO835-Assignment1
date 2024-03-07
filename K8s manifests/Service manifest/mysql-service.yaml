@@ -1,16 +1,13 @@
 # Reference: week6Session2 mongo-service.yaml
 
 apiVersion: v1
-
 kind: Service
-
 metadata:
   name: mysql-service
-  labels:
-    app: mysql
+  namespace: sqldb
 spec:
   ports:
   - port: 3306
     targetPort: 3306
   selector:
-    app: mysql
+    podName: mysql
