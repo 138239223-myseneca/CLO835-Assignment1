@@ -1,0 +1,31 @@
+# Reference: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-deployment-v2
+  namespace: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employee
+      version: v2 
+  template:
+    metadata:
+      labels:
+        app: employee
+        version: v2  
+    spec:
+      containers:
+      - name: employee
+        image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v2.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DBHOST
+          value: "mysql-service.sqldb.svc.cluster.local"
+        - name: DBPORT
+          value: "3306"
+        - name: DBPWD
+          value: "dbpass123"
