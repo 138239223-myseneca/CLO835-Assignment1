@@ -1,5 +1,6 @@
-# Reference: https://medium.com/@tarikyegen35/kubernetes-how-to-pull-an-image-from-aws-ecr-private-repository-do-we-need-secret-object-f8a2ee84e7af
+# Reference: https://spacelift.io/blog/kubernetes-secrets
 # Reference: https://kubernetes.io/docs/concepts/workloads/pods/
+
 
 apiVersion: v1
 kind: Pod
@@ -14,9 +15,11 @@ spec:
     - containerPort: 8080
     env:
       - name: DBHOST
-        value: "mysql-service.sqldb.svc.cluster.local"
+        value: 10.244.0.20
       - name: DBPORT
         value: "3306"
       - name: DBPWD
-        value: "dbpass123"
-~                          
+        valueFrom:
+          secretKeyRef:
+            name: webapp-secret
+            key: password
