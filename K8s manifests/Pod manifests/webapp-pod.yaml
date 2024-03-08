@@ -2,22 +2,21 @@
 # Reference: https://kubernetes.io/docs/concepts/workloads/pods/
 
 apiVersion: v1
-
 kind: Pod
-
 metadata:
-  name: webapp
+  name: employee
   namespace: webapp
 spec:
   containers:
-  - name: webapp
+  - name: employee
     image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v1.0
     ports:
     - containerPort: 8080
     env:
-    - name: DBHOST
-      value: "mysql-service.sqldb.svc.cluster.local"
-    - name: DBPORT
-      value: "3306"
-    - name: DBPWD
-      value: "dbpass123"
+      - name: DBHOST
+        value: "mysql-service.sqldb.svc.cluster.local"
+      - name: DBPORT
+        value: "3306"
+      - name: DBPWD
+        value: "dbpass123"
+~                          
