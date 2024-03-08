@@ -10,16 +10,16 @@ spec:
   selector:
     matchLabels:
       app: employee
-      version: v2 
+      version: v2
   template:
     metadata:
       labels:
         app: employee
-        version: v2  
+        version: v2
     spec:
       containers:
       - name: employee
-        image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v2.0
+        image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v2.1
         ports:
         - containerPort: 8080
         env:
