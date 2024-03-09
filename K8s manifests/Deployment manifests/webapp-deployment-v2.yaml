@@ -27,5 +27,10 @@ spec:
           value: "mysql-service.sqldb.svc.cluster.local"
         - name: DBPORT
           value: "3306"
-        - name: DBPWD
-          value: "dbpass123"
+        - name: DBPWD 
+          valueFrom:
+            secretKeyRef:
+              name: webapp-secret
+              key: password
+
+
