@@ -1,29 +1,37 @@
-# Reference: week5 ppt
+# Reference: Week5 ppt
 
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: employee-rs
+  name: webapp-rs
   namespace: webapp
+  labels:
+    app: employees
+    version: v1
 spec:
-  replicas: 3  
+  replicas: 3
   selector:
     matchLabels:
-      app: employee  
+      app: employees
+      version: v1
   template:
     metadata:
       labels:
-        app: employee  
+        app: employees
+        version: v1
     spec:
       containers:
-      - name: employee
-        image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v1.0
-        ports:
-        - containerPort: 8080
-        env:
-          - name: DBHOST
-            value: "mysql-service.sqldb.svc.cluster.local"
-          - name: DBPORT
-            value: "3306"
-          - name: DBPWD
-            value: "dbpass123"
+        - name: webapp
+          image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DBHOST
+              value: 10.244.0.20
+            - name: DBPORT
+              value: "3306"
+            - name: DBPWD
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: password

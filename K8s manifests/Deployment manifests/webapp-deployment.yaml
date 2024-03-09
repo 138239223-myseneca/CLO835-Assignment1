@@ -17,13 +17,16 @@ spec:
     spec:
       containers:
       - name: employee
-        image: 749333546656.dkr.ecr.us-east-1.amazonaws.com/clo835-webapp-image:v1.0
+        image: 749333546656.dkr.ecwqr.us-east-1.amazonaws.com/clo835-webapp-image:v1.0
         ports:
         - containerPort: 8080
         env:
         - name: DBHOST
-          value: "mysql-service.sqldb.svc.cluster.local"
+          value: "10.244.0.10"
         - name: DBPORT
           value: "3306"
         - name: DBPWD
-          value: "dbpass123"
+        valueFrom:
+          secretKeyRef:
+            name: webapp-secret
+            key: password
